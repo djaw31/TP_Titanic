@@ -34,12 +34,6 @@ summary(glm(y~age+sex+passengerClass , data=df,family = binomial(link = "logit")
 #### TP Titanic packages
 
 #' taux de survie en fonction du sex
-#'
-#' @param data data frame
-#' @return A list
-#' @examples
-#' taux_survie_sex(df)
-#' @export
 
 taux_survie_sex <- function(data) {
   library(dplyr)
@@ -48,21 +42,6 @@ taux_survie_sex <- function(data) {
     summarize(TauxSurvie = sum(survived == "yes") / n()))
 }
 
-
-
-
-######################
-######################
-
-#' taux de survie en fonction de la classe
-#' 
-#' @author Bineta FAYE
-#' @param data data frame
-#' @return A list
-#' @examples
-#' taux_survie_class(df)
-#' @export
-
 taux_survie_class <- function(data) {
   library(dplyr)
   return(data %>%
@@ -70,32 +49,9 @@ taux_survie_class <- function(data) {
            summarize(TauxSurvie = sum(survived == "yes") / n()))
 }
 
-
 library(TitanicPckg)
-## 
-## Attachement du package : 'TitanicPckg'
-## Les objets suivants sont masqués _par_ '.GlobalEnv':
-## 
+
 ##     taux_survie_class, taux_survie_sex
 taux_survie_sex(df)
-## Warning: le package 'dplyr' a été compilé avec la version R 4.3.3
-## 
-## Attachement du package : 'dplyr'
-## Les objets suivants sont masqués depuis 'package:stats':
-## 
-##     filter, lag
-## Les objets suivants sont masqués depuis 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-## # A tibble: 2 × 2
-##   sex    TauxSurvie
-##   <fct>       <dbl>
-## 1 female      0.727
-## 2 male        0.191
+
 TitanicPckg::taux_survie_class(df)
-## # A tibble: 3 × 2
-##   passengerClass TauxSurvie
-##   <fct>               <dbl>
-## 1 1st                 0.619
-## 2 2nd                 0.430
-## 3 3rd                 0.255
